@@ -49,33 +49,6 @@ make
 Each RTL file starts with a comment block that explains the solution and the
 construction steps. Read those before reading the implementation.
 
-## Debugging The Original Adder
-
-The original adder had these issues:
-
-```systemverilog
-module adder(
-    input a[7:0],
-    input b[7:0],
-    out c[7:0])
-```
-
-The corrected version uses:
-
-```systemverilog
-input  logic [WIDTH-1:0] a,
-input  logic [WIDTH-1:0] b,
-output logic [WIDTH-1:0] sum
-```
-
-Important fixes:
-
-- `input a[7:0]` is an unpacked array of one-bit elements. For arithmetic, use
-  a packed vector: `logic [7:0] a`.
-- `out` is not a SystemVerilog port direction. Use `output`.
-- The port list must end with `);`.
-- A real adder should expose carry-out if you care about unsigned overflow.
-- Signed overflow is different from carry-out and must be checked from sign bits.
 
 ## Study Order
 
